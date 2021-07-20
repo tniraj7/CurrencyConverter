@@ -1,6 +1,6 @@
 import XCTest
-import Combine
 import CoreData
+
 @testable import CurrencyConverter
 
 class CurrencyViewModelTests: XCTestCase {
@@ -77,43 +77,43 @@ class CurrencyViewModelTests: XCTestCase {
 
     }
     
-//    func testStorageProviderHasPersistedSupportedCurrencies() {
-//        let request: NSFetchRequest<SupportedCurrency> = SupportedCurrency.fetchRequest()
-//        let context = storageProvider.persistentContainer.viewContext
-//
-//        do {
-//
-//            let inititalCount = try context.count(for: request)
-//            XCTAssertEqual(inititalCount, 0)
-//
-//            storageProvider.saveSupportedCurrency(currencies: currencies)
-//
-//            let finalCount = try context.count(for: request)
-//            XCTAssertEqual(finalCount, 5)
-//
-//        } catch (let error) {
-//            XCTFail("Test fail : \(error.localizedDescription)")
-//        }
-//    }
-//
-//    func testStorageProviderPersistedExhangeRates() {
-//
-//        let request: NSFetchRequest<Quote> = Quote.fetchRequest()
-//        let context = storageProvider.persistentContainer.viewContext
-//
-//        do {
-//
-//            let inititalCount = try context.count(for: request)
-//            XCTAssertEqual(inititalCount, 0)
-//
-//            storageProvider.saveExchangeRates(quotes: quotes)
-//
-//            let finalCount = try context.count(for: request)
-//            XCTAssertEqual(finalCount, 5)
-//
-//        } catch (let error) {
-//            XCTFail("Test fail : \(error.localizedDescription)")
-//        }
-//    }
+    func testStorageProviderHasPersistedSupportedCurrencies() {
+        let request: NSFetchRequest<SupportedCurrency> = SupportedCurrency.fetchRequest()
+        let context = storageProvider.persistentContainer.viewContext
+
+        do {
+
+            let inititalCount = try context.count(for: request)
+            XCTAssertEqual(inititalCount, 0)
+
+            storageProvider.saveSupportedCurrency(currencies: currencies)
+
+            let finalCount = try context.count(for: request)
+            XCTAssertEqual(finalCount, 5)
+
+        } catch (let error) {
+            XCTFail("Test fail : \(error.localizedDescription)")
+        }
+    }
+
+    func testStorageProviderPersistedExhangeRates() {
+
+        let request: NSFetchRequest<Quote> = Quote.fetchRequest()
+        let context = storageProvider.persistentContainer.viewContext
+
+        do {
+
+            let inititalCount = try context.count(for: request)
+            XCTAssertEqual(inititalCount, 0)
+
+            storageProvider.saveExchangeRates(quotes: quotes)
+
+            let finalCount = try context.count(for: request)
+            XCTAssertEqual(finalCount, 5)
+
+        } catch (let error) {
+            XCTFail("Test fail : \(error.localizedDescription)")
+        }
+    }
 
 }

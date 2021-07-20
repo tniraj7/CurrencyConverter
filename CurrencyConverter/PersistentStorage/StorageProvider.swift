@@ -8,12 +8,25 @@ enum StoreType {
 class StorageProvider {
     
     static var shared = StorageProvider()
+
     private let coreDateModelFileName = "CurrencyConverterModel"
+    
+    static var managedObjectModel: NSManagedObjectModel = {
+        let bundle = Bundle(for: StorageProvider.self)
+        guard let url = bundle.url(forResource: "CurrencyConverterModel", withExtension: ".momd") else {
+            fatalError("Failed to locate momd file")
+        }
+        guard let model = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("Failed to locate momd file")
+        }
+        return model
+    }()
+    
     let persistentContainer: NSPersistentContainer
     
     init(storeType: StoreType = .persisted) {
 
-        persistentContainer = NSPersistentContainer(name: coreDateModelFileName)
+        persistentContainer = NSPersistentContainer(name: coreDateModelFileName, managedObjectModel: Self.managedObjectModel)
         
         if storeType == .inMemory {
             let description = NSPersistentStoreDescription()
